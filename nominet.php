@@ -4,7 +4,6 @@ require_once dirname(__FILE__) . '/../../../library/CE/XmlFunctions.php';
 
 class Nominet
 {
-
     private $username = '';
     private $password = '';
     private $useTestBed = false;
@@ -62,11 +61,12 @@ class Nominet
 
     public function login()
     {
-         $xml = "
+        $password = htmlspecialchars($this->password);
+        $xml = "
             <command>
                 <login>
                     <clID>{$this->username}</clID>
-                    <pw>{$this->password}</pw>
+                    <pw>{$password}</pw>
                     <options>
                         <version>1.0</version>
                         <lang>en</lang>

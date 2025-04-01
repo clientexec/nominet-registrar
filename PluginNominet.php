@@ -178,7 +178,7 @@ class PluginNominet extends RegistrarPlugin
         <contact:create xmlns:contact="urn:ietf:params:xml:ns:contact-1.0"     xsi:schemaLocation="urn:ietf:params:xml:ns:contact-1.0 contact-1.0.xsd">
             <contact:id>Clientexec' . $this->escape($params['userPackageId']) . rand(1, 10000) . '</contact:id>
             <contact:postalInfo type="loc">
-                <contact:name>' . $this->escape($$pho) . '</contact:name>
+                <contact:name>' . $this->escape($regName) . '</contact:name>
                  ' . $regOrgName . '
                   <contact:addr>
                     <contact:street>' . $this->escape($params['RegistrantAddress1']) . '</contact:street>
@@ -227,6 +227,7 @@ class PluginNominet extends RegistrarPlugin
         $this->api->login();
 
         $contactId = $this->createContact($params);
+        $nameServers = [];
 
         if (isset($params['NS1'])) {
             for ($i = 1; $i <= 12; $i++) {
